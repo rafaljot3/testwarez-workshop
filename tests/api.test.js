@@ -41,7 +41,7 @@ describe("Api tests", () => {
     expect(response.body.result).to.eql("User authorized successfully.");
   });
 
-  it.skip("Add a book to a user", async () => {
+  it("Add a book to a user", async () => {
     const response = await spec()
       .post(`${baseUrl}/BookStore/v1/Books`)
       .withBearerToken(token_response)
@@ -57,7 +57,7 @@ describe("Api tests", () => {
     expect(response.statusCode).to.eql(201);
   });
 
-  it.skip("Delete books from a user", async () => {
+  it("Delete books from a user", async () => {
     const response = await spec()
       .delete(`${baseUrl}/BookStore/v1/Books?UserId=${userID}`)
       .withBearerToken(token_response)
