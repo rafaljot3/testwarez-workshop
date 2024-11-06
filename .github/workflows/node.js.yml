@@ -1,7 +1,7 @@
 name: API-tests CI
 
 env:
-  SECRET_PASSWORD: ${{secrets.SECRET_PASSWORD}}
+  SECRET_PASSWORD: ${{secrets.SECRET_PASS}}
 
 on:
   push:
