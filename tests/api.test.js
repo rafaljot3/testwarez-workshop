@@ -20,11 +20,11 @@ describe("Api tests", () => {
     const response = await spec()
       .post(`${baseUrl}/Account/v1/User`)
       .withBody({
-        userName: userName,
+        userName: "rafal123",
         password: process.env.SECRET_PASSWORD,
       })
       .inspect();
     expect(response.statusCode).to.eql(201);
-    //bf15a962-ef85-4c35-9620-b29324ee4650
+    //
   });
 });
