@@ -20,7 +20,7 @@ describe("Api tests", () => {
     const response = await spec()
       .post(`${baseUrl}/Account/v1/User`)
       .withBody({
-        userName: "rafal123",
+        userName: "rafal1234",
         password: process.env.SECRET_PASSWORD,
       })
       .inspect();
