@@ -6,7 +6,7 @@ import { baseUrl, password, user, userID } from "../helpers/data.js";
 
 let token_response;
 describe("Api tests", () => {
-  it("get request", async () => {
+  it.skip("get request", async () => {
     const response = await spec()
       .get(`${baseUrl}/BookStore/v1/Books`)
       .inspect();
@@ -16,18 +16,18 @@ describe("Api tests", () => {
     expect(response.body.books[4].title).to.eql("You Don't Know JS");
     expect(resp).to.include("Kyle Simpson");
   });
-  it("Create user", async () => {
+  it.skip("Create user", async () => {
     const response = await spec()
       .post(`${baseUrl}/Account/v1/User`)
       .withBody({
-        userName: "rafal1234",
+        userName: "rafal12345",
         password: process.env.SECRET_PASSWORD,
       })
       .inspect();
     expect(response.statusCode).to.eql(201);
   });
 
-  it.only("Generate token", async () => {
+  it("Generate token", async () => {
     const response = await spec()
       .post(`${baseUrl}/Account/v1/GenerateToken`)
       .withBody({
@@ -40,9 +40,6 @@ describe("Api tests", () => {
     expect(response.statusCode).to.eql(200);
     expect(response.body.result).to.eql("User authorized successfully.");
   });
-  //   it.only("check token", async () => {
-  //     console.log("another it block " + token_response);
-  //   });
 
   it("Add a book to a user", async () => {
     const response = await spec()
@@ -62,7 +59,7 @@ describe("Api tests", () => {
 
   it("Delete books from a user", async () => {
     const response = await spec()
-      .delete(`${baseUrl}/Account/v1/User/` + userID)
+      .delete(`${baseUrl}/BookStore/v1/Books?UserId=${userID}`)
       .withBearerToken(token_response)
       .inspect();
     expect(response.statusCode).to.eql(204);
@@ -74,6 +71,7 @@ describe("Api tests", () => {
       .withBearerToken(token_response)
       .inspect();
     expect(response.statusCode).to.eql(200);
+    expect(response.body.books).to.eql([]);
     //change
   });
 });
